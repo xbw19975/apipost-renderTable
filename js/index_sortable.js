@@ -12,7 +12,6 @@ function sortable() {
                     if ($(evt.dragged).attr("level") != $(evt.related).attr("level")) {
                         return false;
                     }
-                    // Example: https://jsbin.com/nawahef/edit?js,output
                     evt.dragged; // dragged HTMLElement
                     evt.draggedRect; // DOMRect {left, top, right, bottom}
                     evt.related; // HTMLElement on which have guided
