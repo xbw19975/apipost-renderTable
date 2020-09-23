@@ -1,0 +1,113 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+input {
+  border: none;
+  outline: none
+}
+
+body {
+  background: url(../img/bg.jpg) repeat;
+  color: aliceblue;
+}
+
+ul,
+ol,
+li {
+  list-style: none;
+}
+
+.input_1 {
+  width: 500px;
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.header .current {
+  display: block;
+}
+
+.header>div {
+  display: none;
+}
+
+.header_1 {
+  display: flex;
+}
+
+.header_1>div {
+  width: 50%;
+}
+
+.response_editor,
+.header_editor,
+.mock_editor,
+.mockdata_editor {
+  width: 100%;
+  border: 1px solid red;
+  height: 500px;
+  min-height: inherit;
+  max-height: 800px;
+}
+
+
+.params {
+  display: block;
+}
+
+#responseContent,
+#responseContent ul {
+  width: 100%;
+}
+
+#responseContent li {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  border-collapse: collapse;
+}
+
+/* #responseContent li:last-child {
+  width: 100%;
+} */
+
+#responseContent li ul {
+  width: 100%;
+}
+
+#responseContent li span {
+  border: 1px solid red;
+  border-width: 0 1px 1px 0;
+  height: 40px;
+  width: 16%;
+  box-sizing: border-box;
+}
+
+#responseContent {
+  width: 100%;
+  margin-top: 30px;
+  border: 1px solid red;
+  border-width: 1px 0 0 1px;
+}
+
+.blue-background-class {
+  background-color: #C8EBFB;
+}
+
+.tabList {
+  display: flex;
+  margin: 20px 0px;
+}
+
+.tabList li {
+  margin-left: 200px;
+}
+
+.current {
+  color: red;
+}

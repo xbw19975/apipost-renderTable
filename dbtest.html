@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <button onclick="dbTest()">db测试</button>
+</body>
+<script>
+    var db;
+
+    var dbVersion = 1; // 全局的indexedDB数据库实例。
+
+    // 2\. 通过IDBFactory接口的open方法打开一个indexedDB的数据库实例
+    // 第一个参数： 数据库的名字，第二个参数：数据库的版本。返回值是一个：IDBRequest实例,此实例有onerror和onsuccess事件。
+    let request = indexedDB.open("admin", dbVersion);
+
+
+    // 打开数据库成功后，自动调用onsuccess事件回调。
+    request.onsuccess = function (e) {
+        console.log("开启成功success");
+        db = e.target.result; // 获取到 demoDB对应的 IDBDatabase实例,也就是我们的数据库。
+        db.onversionchange = () => {
+            db.close();
+        }
+    };
+
+    // 打开数据库失败
+    request.onerror = function (e) {
+        console.log("开启db失败" + e.currentTarget.error.message);
+    };
+
+    // 第一次打开成功后或者版本有变化自动执行以下事件：一般用于初始化数据库。
+    request.onupgradeneeded = function (e) {
+        console.log("版本修改了！");
+        db = e.target.result;
+        if (db.objectStoreNames.contains("users")) {
+            db.deleteObjectStore("users")
+        }
+        db.createObjectStore("users", {
+            keyPath: "username"
+        })
+        console.log('数据库版本更改为： ' + dbVersion);
+    };
+    let user = {
+        username: '999999999999999',
+        phone: '189111833',
+        address: 'aicoder.com',
+        a1: "你问你请问你请问你请问内外墙内墙外内哦",
+        a2: "你问你请问你请问你请问内外墙内墙外内哦",
+        a3: "你问你请问你请问你请问内外墙内墙外内哦",
+        a4: "你问你请问你请问你请问内外墙内墙外内哦",
+        a5: "你问你请问你请问你请问内外墙内墙外内哦",
+        a6: "你问你请问你请问你请问内外墙内墙外内哦",
+        a7: "你问你请问你请问你请问内外墙内墙外内哦",
+        a8: "你问你请问你请问你请问内外墙内墙外内哦"
+    };
+
+    function dbTest() {
+        for (let index = 0; index < 10000; index++) {
+            user.username = parseInt(user.username) + 1
+            // 创建一个事务，类型：IDBTransaction，文档地址： https://developer.mozilla.org/en-US/docs/Web/API/IDBTransaction
+            let transaction = db.transaction("users", "readwrite"),
+                // 通过事务来获取IDBObjectStore
+                store = transaction.objectStore("users"),
+                result1 = store.add(user);
+            result1.onsuccess = (e) => {
+                console.log("1111success");
+            }
+        }
+    }
+</script>
+
+</html>
