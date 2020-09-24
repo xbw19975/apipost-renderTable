@@ -50,7 +50,7 @@
     var paramsTable = document.getElementById("paramsTable");
     var li = document.createElement("li");
     li.innerHTML =
-      "<input type='text' value='参数名称'><input type='text' value='参数数值'><button>删除参数</button>";
+      "<input type='text' value='参数名称' onfocus='cls(this)'  style='color:gray;'><input type='text' value='参数数值' onfocus='cls(this)' style='color:gray;'><button>删除参数</button>";
     paramsTable.appendChild(li);
   }
 
@@ -58,8 +58,18 @@
     var paramsTable = document.getElementById("paramsHeader");
     var li = document.createElement("li");
     li.innerHTML =
-      "<input type='text' value='参数名称'><input type='text' value='参数数值'><button>删除参数</button>";
+      "<input type='text' value='参数名称' onfocus='cls(this)' style='color:gray;'><input type='text' value='参数数值' onfocus='cls(this)' style='color:gray;'><button>删除参数</button>";
     paramsTable.appendChild(li);
   }
+  function cls(el) {
+    if ($(el).val().includes('参数')) {
+      $(el).val('');
+      $(el).css("color","black");
+    }
+  }
   //tab 切换
-  mainMethod.tabList();
+  mainMethod.tabList(".tabList li",".header>div");
+  mainMethod.tabList(".nowInterface li");
+  mainMethod.tabList(".catalog li");
+  
+  
