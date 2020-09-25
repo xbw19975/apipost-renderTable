@@ -67,9 +67,16 @@
       $(el).css("color","black");
     }
   }
+  //保存按钮
+  function saveInterface(){
+
+  }
   //tab 切换
   mainMethod.tabList(".tabList li",".header>div");
   mainMethod.tabList(".nowInterface li");
   mainMethod.tabList(".catalog li");
+
+
+
   
   

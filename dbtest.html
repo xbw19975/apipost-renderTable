@@ -43,12 +43,13 @@
             db.deleteObjectStore("users")
         }
         db.createObjectStore("users", {
-            keyPath: "username"
+            keyPath: "id",
+            autoIncrement:true
         })
         console.log('数据库版本更改为： ' + dbVersion);
     };
     let user = {
-        username: '999999999999999',
+        username: '0',
         phone: '189111833',
         address: 'aicoder.com',
         a1: "你问你请问你请问你请问内外墙内墙外内哦",
@@ -62,17 +63,15 @@
     };
 
     function dbTest() {
-        for (let index = 0; index < 10000; index++) {
-            user.username = parseInt(user.username) + 1
             // 创建一个事务，类型：IDBTransaction，文档地址： https://developer.mozilla.org/en-US/docs/Web/API/IDBTransaction
             let transaction = db.transaction("users", "readwrite"),
                 // 通过事务来获取IDBObjectStore
                 store = transaction.objectStore("users"),
                 result1 = store.add(user);
+                
             result1.onsuccess = (e) => {
                 console.log("1111success");
             }
-        }
     }
 </script>
 
